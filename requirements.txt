@@ -1,3 +1,13 @@
 langchain==0.1.6
+langchain-community==0.0.19
 langchain_core==0.1.22
+langchain-openai==0.0.5
+faiss-cpu==1.7.3
+huggingface-hub==0.20.1
 streamlit==1.31.0
+cohere==4.46
+openai==1.11.1
+rank-bm25==0.2.2
+tiktoken==0.5.2
+unstructured==0.12.3
+unstructured-inference==0.7.23

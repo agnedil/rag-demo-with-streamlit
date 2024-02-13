@@ -10,6 +10,7 @@ cohere==4.46
 openai==1.11.1
 opencv-python==4.9.0.80
 pikepdf==8.12.0
+pypdf==4.0.1
 rank-bm25==0.2.2
 tiktoken==0.5.2
 unstructured==0.12.3

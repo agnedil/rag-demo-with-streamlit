@@ -39,7 +39,7 @@ def handle_query_submission_1() -> None:
             st.session_state.response = response
     # handle cases where RAG system is not initialized correctly
     except AttributeError:
-        st.error("RAG system was not built correctly. Please re-load PDFs.")
+        st.error("RAG system is not ready. Please load PDFs.")
 
 
 def calculate_text_area_height(

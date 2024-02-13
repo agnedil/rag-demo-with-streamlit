@@ -4,6 +4,7 @@ from advanced_rag_history import ElevatedRagWithHistory
 
 st.set_page_config(page_title="Advanced RAG with Chat History", page_icon="🔎")
 st.sidebar.header("Advanced RAG with Chat History")
+st.session_state['current_page'] = 'page2'
 
 
 def get_elevated_rag_chain_history() -> ElevatedRagWithHistory:
@@ -18,7 +19,7 @@ def get_elevated_rag_chain_history() -> ElevatedRagWithHistory:
     return st.session_state.elevated_rag_chain_history
 
 
-def handle_query_submission() -> None:
+def handle_query_submission_2() -> None:
     '''
     Handle submission of user query:
     * validate query
@@ -27,14 +28,14 @@ def handle_query_submission() -> None:
     * display error message if query is empty or if RAG system encounters an issue
     '''
     # validate query is not empty
-    if not st.session_state.user_query.strip():
+    if not st.session_state.user_query2.strip():
         st.error("Please enter a non-empty query")
         return
     # perform query operation and update session state with response
     try:    
         with st.spinner("Querying the Llama RAG system ..."):
             elevated_rag_chain_history = get_elevated_rag_chain_history()
-            response = elevated_rag_chain_history.invoke(st.session_state.user_query)
+            response = elevated_rag_chain_history.invoke(st.session_state.user_query2)
             st.session_state.response2 = response
     # handle cases where RAG system is not initialized correctly
     except AttributeError:
@@ -87,13 +88,20 @@ def main() -> None:
     
     change_background_color()
     st.title("Query your own data")
-    st.markdown("# **Llama 2 RAG w/Chat History**")
     st.markdown(
         '''
-        **This system is best suited for cases when subsequent user queries may be related to previous queries**  
+        # **Llama 2 RAG w/Chat History**
+        * Type in one or more URLs for PDF files - one per line.
+        * Click on `Load PDFs` and wait until the RAG system is built.
+        * Type your query and click on `Submit Query`.
+        * Once the LLM sends back a reponse, it will be displayed in the Reponse field.
+        * This system is best suited for cases when subsequent user queries may be related to previous ones.
+        
         **Refresh the page to clear / reset the RAG system**
         '''
     )
+    st.text('')
+    st.text('')
 
     # input area for PDF URLs
     pdf_urls = st.text_area("Enter PDF URLs (one per line):", height=100)
@@ -114,14 +122,15 @@ def main() -> None:
                 st.warning("Could not load PDFs. Make sure your PDF URLs are valid.")
 
     # input and submit user query
-    user_query = st.text_input("Enter your query:", key="user_query")
-    submit_query_button = st.button("Submit Query", on_click=handle_query_submission)
+    user_query2 = st.text_input("Enter your query:", key="user_query2")
+    submit_query_button2 = st.button("Submit Query", on_click=handle_query_submission_2)
 
     # initialize or display response field
     if 'response2' not in st.session_state:
         st.session_state['response2'] = ''
     dynamic_height = calculate_text_area_height(st.session_state['response2'])
-    st.text_area("Response2:", value=st.session_state['response2'], height=dynamic_height, key="response_field_page2")
+    if st.session_state['current_page'] == 'page2':
+        st.text_area("Response:", value=st.session_state['response2'], height=dynamic_height, key="response_field_page2")
 
 
 if __name__ == "__main__":

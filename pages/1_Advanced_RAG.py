@@ -4,6 +4,7 @@ from advanced_rag import ElevatedRagChain
 
 st.set_page_config(page_title="Advanced RAG", page_icon="🔍")
 st.sidebar.header("Advanced RAG")
+st.session_state['current_page'] = 'page1'
 
 
 def get_elevated_rag_chain() -> ElevatedRagChain:
@@ -18,7 +19,7 @@ def get_elevated_rag_chain() -> ElevatedRagChain:
     return st.session_state.elevated_rag_chain
 
 
-def handle_query_submission() -> None:
+def handle_query_submission_1() -> None:
     '''
     Handle submission of user query:
     * validate query
@@ -27,14 +28,14 @@ def handle_query_submission() -> None:
     * display error message if query is empty or if RAG system encounters an issue
     '''
     # validate query is not empty
-    if not st.session_state.user_query.strip():
+    if not st.session_state.user_query1.strip():
         st.error("Please enter a non-empty query")
         return
     # perform query operation and update session state with response
     try:    
         with st.spinner("Querying the Llama RAG system ..."):
             elevated_rag_chain = get_elevated_rag_chain()
-            response = elevated_rag_chain.elevated_rag_chain.invoke(st.session_state.user_query)
+            response = elevated_rag_chain.elevated_rag_chain.invoke(st.session_state.user_query1)
             st.session_state.response = response
     # handle cases where RAG system is not initialized correctly
     except AttributeError:
@@ -85,13 +86,20 @@ def main() -> None:
     
     change_background_color()
     st.title("Query your own data")
-    st.markdown("# **Llama 2 RAG**")
     st.markdown(
         '''
-        **This system is best suited for cases when user queries are not related to each other**  
+        # **Llama 2 RAG**
+        * Type in one or more URLs for PDF files - one per line.
+        * Click on `Load PDFs` and wait until the RAG system is built.
+        * Type your query and click on `Submit Query`.
+        * Once the LLM sends back a reponse, it will be displayed in the Reponse field.
+        * This system is best suited for cases when different user queries are not related to each other.
+        
         **Refresh the page to clear / reset the RAG system**
         '''
     )
+    st.text('')
+    st.text('')
 
     # input area for PDF URLs
     pdf_urls = st.text_area("Enter PDF URLs (one per line):", height=100)
@@ -112,14 +120,15 @@ def main() -> None:
                 st.warning("Could not load PDFs. Make sure your PDF URLs are valid.")
 
     # input and submit user query
-    user_query = st.text_input("Enter your query:", key="user_query")
-    submit_query_button = st.button("Submit Query", on_click=handle_query_submission)
+    user_query1 = st.text_input("Enter your query:", key="user_query1")
+    submit_query_button1 = st.button("Submit Query", on_click=handle_query_submission_1)
 
     # initialize or display response field
     if 'response' not in st.session_state:
         st.session_state['response'] = ''
     dynamic_height = calculate_text_area_height(st.session_state['response'])
-    st.text_area("Response:", value=st.session_state['response'], height=dynamic_height, key="response_field_page1")
+    if st.session_state['current_page'] == 'page1':
+        st.text_area("Response:", value=st.session_state['response'], height=dynamic_height, key="response_field_page1")
 
 
 if __name__ == "__main__":

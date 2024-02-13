@@ -121,7 +121,7 @@ def main() -> None:
     if 'response2' not in st.session_state:
         st.session_state['response2'] = ''
     dynamic_height = calculate_text_area_height(st.session_state['response2'])
-    st.text_area("Response:", value=st.session_state['response2'], height=dynamic_height, key="response_field2")
+    st.text_area("Response2:", value=st.session_state['response2'], height=dynamic_height, key="response_field_page2")
 
 
 if __name__ == "__main__":

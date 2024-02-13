@@ -1,12 +1,12 @@
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 from typing import List
-from langchain.llms import Replicate
-from langchain.document_loaders import OnlinePDFLoader
+from langchain_community.llms import Replicate    # importing from langchain depricated; use langchain_community for several modules here
+from langchain_community.document_loaders import OnlinePDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
-from langchain.embeddings import CohereEmbeddings
-from langchain.retrievers import BM25Retriever
+from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import CohereEmbeddings
+from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
 from langchain.retrievers import ContextualCompressionRetriever
 from langchain.retrievers.document_compressors import CohereRerank

@@ -18,5 +18,5 @@ To run this application, you need to have Python and Streamlit installed. Follow
 3. Install dependencies from the requirements.txt file by running `pip install -r requirements.txt`.
 4. Start the Streamlit app by running `streamlit run `Hello.py`.
 
-
-
+## Licence
+MIT license

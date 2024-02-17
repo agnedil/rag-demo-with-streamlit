@@ -1,0 +1,3 @@
+run "sudo apt-get install" for packages in file "packages.txt"
+"packages.txt" is formatted for use on Streamlit cloud - can't use comments in it
+MAYBE additionally: sudo apt install mesa-libGL OR sudo apt install mesa-libGLU

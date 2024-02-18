@@ -12,14 +12,14 @@ This repository contains the code for a multi-page Streamlit web app that demoes
 
 ## Features
 
-### Dynamic Processing
+#### Dynamic Processing
 - Users can load source documents into a vector store in real-time.
 - Submit queries which are processed in real-time, leveraging various RAG systems for enhanced retrieval and generation.
 
-### PDF Integration
+#### PDF Integration
 - The system allows for the loading of multiple PDF documents into a vector store, enabling the RAG system to retrieve information from a vast corpus.
 
-### Advanced RAG System
+#### Advanced RAG System
 Integrates various components, including:
 - **UI**: Allows users to input URLs for documents and then input user queries; displays the LLM response.
 - **Document Loader**: Loads documents from URLs.
@@ -28,18 +28,18 @@ Integrates various components, including:
 - **Retrievers**: Uses an ensemble of BM25 and FAISS retrievers, along with a Cohere reranker, to retrieve relevant document chunks based on user queries.
 - **Language Model**: Utilizes a Llama 2 large language model for generating responses based on the user query and retrieved context.
 
-### PDF and Query Error Handling
+#### PDF and Query Error Handling
 - Validates PDF URLs and queries to ensure that they are not empty and that they are valid.
 - Displays error messages for empty queries or issues with the RAG system.
 
-### Dynamic UI Elements
+#### Dynamic UI Elements
 - Dynamically calculate and adjust the height of the text area displaying the response based on its content.
 - Change the background color of the app through custom CSS injection.
 
-### Session State Management
+#### Session State Management
 - Manages session state to store the current page, user queries, responses, and the RAG object instance.
 
-### Refresh Mechanism
+#### Refresh Mechanism
 - Instructs users to refresh the page to clear / reset the RAG system.
 
 ## Installation
@@ -47,9 +47,10 @@ Integrates various components, including:
 To run this application, you need to have Python and Streamlit installed. Follow these steps:
 
 1. Clone this repository to your local machine.
-2. Create and activate a virtual environment.
+2. Create and activate a virtual environment of your choice (venv, conda, etc.).
 3. Install dependencies from the requirements.txt file by running `pip install -r requirements.txt`.
-4. Start the Streamlit app by running `streamlit run `Hello.py`.
+4. Set up environment variables REPLICATE_API_TOKEN (for a Llama 2 model hosted on replicate.com) and COHERE_API_KEY (for embeddings and reranking service on cohere.com)
+4. Start the Streamlit app by running `streamlit run Hello.py`.
 
 ## Licence
 MIT license

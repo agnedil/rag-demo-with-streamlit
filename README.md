@@ -12,14 +12,14 @@ This repository contains the code for a multi-page Streamlit web app that demoes
 
 ## Features
 
-#### Dynamic Processing
+#### 1. Dynamic Processing
 - Users can load source documents into a vector store in real-time.
 - Submit queries which are processed in real-time, leveraging various RAG systems for enhanced retrieval and generation.
 
-#### PDF Integration
+#### 2. PDF Integration
 - The system allows for the loading of multiple PDF documents into a vector store, enabling the RAG system to retrieve information from a vast corpus.
 
-#### Advanced RAG System
+#### 3. Advanced RAG System
 Integrates various components, including:
 - **UI**: Allows users to input URLs for documents and then input user queries; displays the LLM response.
 - **Document Loader**: Loads documents from URLs.
@@ -28,18 +28,18 @@ Integrates various components, including:
 - **Retrievers**: Uses an ensemble of BM25 and FAISS retrievers, along with a Cohere reranker, to retrieve relevant document chunks based on user queries.
 - **Language Model**: Utilizes a Llama 2 large language model for generating responses based on the user query and retrieved context.
 
-#### PDF and Query Error Handling
+#### 4. PDF and Query Error Handling
 - Validates PDF URLs and queries to ensure that they are not empty and that they are valid.
 - Displays error messages for empty queries or issues with the RAG system.
 
-#### Dynamic UI Elements
+#### 5. Dynamic UI Elements
 - Dynamically calculate and adjust the height of the text area displaying the response based on its content.
 - Change the background color of the app through custom CSS injection.
 
-#### Session State Management
+#### 6. Session State Management
 - Manages session state to store the current page, user queries, responses, and the RAG object instance.
 
-#### Refresh Mechanism
+#### 7. Refresh Mechanism
 - Instructs users to refresh the page to clear / reset the RAG system.
 
 ## Installation

@@ -120,6 +120,9 @@ def main() -> None:
                     st.success("PDFs loaded successfully!")
             except ValueError:
                 st.warning("Could not load PDFs. Make sure your PDF URLs are valid.")
+            except Exception as e:
+                st.warning("Could not load PDFs. Make sure you are uploading valid PDF files")
+                print(e)
 
     # input and submit user query
     user_query2 = st.text_input("Enter your query:", key="user_query2")
